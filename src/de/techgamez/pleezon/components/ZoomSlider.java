@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class ZoomSlider extends JSlider{
     public ZoomSlider(int x, int y, int width, int height, JFrame frame){
-        super(0,2,20,16);
+        super(0,1,25,16);
         this.setBounds(x,y,width,height);
         super.setPaintTicks(true);
         super.setMinorTickSpacing(1);

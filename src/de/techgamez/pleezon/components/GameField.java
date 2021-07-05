@@ -77,7 +77,6 @@ public class GameField extends JPanel {
         int amoCellsY = this.getHeight() / cellSize + 2;
         for (int x = -2; x < amoCellsX; x++) {
             for (int y = -2; y < amoCellsY; y++) {
-
                 int x1 = (x * cellSize) - (offsetX % cellSize);
                 int y1 = (y * cellSize) - (offsetY % cellSize);
                 int xx = (offsetX / cellSize) + x;
@@ -92,13 +91,19 @@ public class GameField extends JPanel {
                         xx += CellManager.cells.length;
                     }
                 }
-                if (xx >= CellManager.cells.length || yy >= CellManager.cells.length || xx < 0 || yy < 0) {
-                    drawAt(x1, y1, CellManager.mirrorMode ? Color.ORANGE : Color.RED, g);
-                } else if (CellManager.cells[xx][yy]) {
-                    drawAt(x1, y1, Color.BLACK, g);
-                } else {
-                    drawAt(x1, y1, Color.WHITE, g);
+                try{
+                    if (xx >= CellManager.cells.length || yy >= CellManager.cells.length || xx < 0 || yy < 0) {
+                        drawAt(x1, y1, Color.RED, g);
+                    } else if (CellManager.cells[xx][yy]) {
+                        drawAt(x1, y1, Color.BLACK, g);
+                    } else {
+                        drawAt(x1, y1, Color.WHITE, g);
+                    }
+                }catch (Exception e){
+                    drawAt(x1, y1, Color.RED, g);
+                    e.printStackTrace();
                 }
+
             }
 
         }

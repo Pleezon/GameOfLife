@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class KeyManager implements KeyListener {
     private static int speed = 5;
     private static final boolean[] pressed = new boolean[255];
-    private static ScheduledExecutorService scheduledExecutorService = new ScheduledThreadPoolExecutor(1);;
+    private static final ScheduledExecutorService scheduledExecutorService = new ScheduledThreadPoolExecutor(1);;
 
     public static void setSpeed(int value){
         speed = value;
@@ -47,7 +47,6 @@ public class KeyManager implements KeyListener {
                 changed = true;
             }
             if(changed) GameOfLife.gameField.repaint();
-            //System.out.println("OFFSETS: " + GameOfLife.gameField.offsetX + " " + GameOfLife.gameField.offsetY);
         }, 0, (int)50D/speed, TimeUnit.MILLISECONDS);
     }
     @Override
